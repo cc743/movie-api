@@ -37,5 +37,10 @@ app.get("/movies", (req, res) => {
 
 app.use("/documentation.html", express.static("public")); //express.static()
 
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send("Error! Error!");
+});
+
 //listen for requests
 app.listen(8080, () => console.log("Your app is listening on port 8080."));
