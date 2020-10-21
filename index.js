@@ -35,7 +35,7 @@ app.get("/movies", (req, res) => {
   res.json(topMovies);
 });
 
-app.use("/documentation.html", express.static("public")); //express.static()
+app.use("/documentation.html", express.static("public")); //express.static(), this is where I am having trouble
 
 //error handling middleware function
 app.use((err, req, res, next) => {
