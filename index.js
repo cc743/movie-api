@@ -1,4 +1,5 @@
 const express = require("express");
+const morgan = require("morgan"); //locally importing Morgan
 const app = express();
 
 let topMovies = [
@@ -24,6 +25,8 @@ let topMovies = [
   }
 ];
 
+app.use(morgan("common")); //invoking Morgan
+
 app.get("/", (req, res) => {
   res.send("Welcome to my movie club");
 });
@@ -32,7 +35,7 @@ app.get("/movies", (req, res) => {
   res.json(topMovies);
 });
 
-app.use(express.static("public"));
+app.use("/documentation.html", express.static("public")); //express.static()
 
 //listen for requests
 app.listen(8080, () => console.log("Your app is listening on port 8080."));
