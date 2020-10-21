@@ -37,6 +37,7 @@ app.get("/movies", (req, res) => {
 
 app.use("/documentation.html", express.static("public")); //express.static()
 
+//error handling middleware function
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send("Error! Error!");
