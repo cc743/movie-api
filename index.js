@@ -35,6 +35,4 @@ app.get("/movies", (req, res) => {
 app.use(express.static("public"));
 
 //listen for requests
-app.listen(8080, () =>
-  console.log("Your app (movie app?) is listening on port 8080.")
-);
+app.listen(8080, () => console.log("Your app is listening on port 8080."));
