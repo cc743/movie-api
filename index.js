@@ -35,7 +35,9 @@ app.get("/movies", (req, res) => {
   res.json(topMovies);
 });
 
-app.use("/documentation.html", express.static("public")); //express.static(), this is where I am having trouble
+app.get("documentation", (req, res) => {
+  res.sendFile("public/documentation.html", { root: _dirname });
+});
 
 //error handling middleware function
 app.use((err, req, res, next) => {
