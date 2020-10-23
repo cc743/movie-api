@@ -21,7 +21,7 @@
         different movies, directors, and genres.
       </p>
       <p>
-        Out users will be able to sign up, update their personal informatoin,
+        Out users will be able to sign up, update their personal information,
         and create a list of favorite movies
       </p>
     </section>
@@ -32,7 +32,7 @@
     <section>
       <table>
         <tr>
-          <th>Business Logic</th>
+          <th>Request</th>
           <th>Url Endpoint</th>
           <th>HTTP Method</th>
           <th>Request Body</th>
@@ -47,56 +47,93 @@
           <td>None</td>
           <td>/movies</td>
           <td>JSON</td>
-          <td>ENTER EXAMPLE HERE</td>
+          <td>A JSON object holding data about all the movies</td>
         </tr>
         <tr>
           <td>
             Get information of one specific movie by title, use %20 for spaces
           </td>
-          <td>/movies/Genres/:Title</td>
+          <td>/movies/:Title</td>
           <td>GET</td>
-          <td>NONE</td>
-          <td>/movies/Casino</td>
+          <td>None</td>
+          <td>/movies/Parasite</td>
           <td>JSON</td>
-          <td>ENTER EXAMPLE HERE</td>
+          <td>
+            { <br />title: "Parasite",<br />
+            genre: "thriller",<br />
+            director: "Bong Joon-Ho" <br />}
+          </td>
         </tr>
         <tr>
           <td>
             Return data about genre of a movie by its title, use %20 for spaces
           </td>
-          <td>/movies/Genres/:Title</td>
+          <td>/movies/Genres/:Name</td>
           <td>GET</td>
           <td>None</td>
-          <td>/movies/Genres/Casino</td>
+          <td>/movies/Genres/Horror</td>
           <td>JSON</td>
-          <td>ENTER EXAMPLE HERE</td>
+          <td>
+            { <br />
+            name: "horror", <br />
+            description: "Horror is a genre of film that seeks to elicit
+            fear."<br />}
+          </td>
         </tr>
         <tr>
           <td>Return data about a director by name, use %20 for spaces</td>
           <td>/movies/Directors/:Name</td>
+          <!-- are the directors being found by list of directors or from the list of movies? -->
           <td>GET</td>
           <td>None</td>
           <td>/movies/Directors/Martin%20Scorsese</td>
           <td>JSON</td>
-          <td>ENTER EXAMPLE HERE</td>
+          <td>
+            { <br />
+            name: "Martin Scorsese", <br />
+            careerSpan: "1967-present" <br />
+            }
+          </td>
         </tr>
         <tr>
           <td>Allow new users to register</td>
           <td>/users</td>
           <td>POST</td>
           <td>JSON</td>
-          <td>ENTER EXAMPLE HERE</td>
+          <td>
+            { <br />
+            name: "Francisco Trincao", <br />
+            favoriteGenre: "comedy" <br />
+            }
+          </td>
           <td>JSON</td>
-          <td>ENTER EXAMPLE HERE</td>
+          <td>
+            { <br />
+            id: 5, <br />
+            name: "Francisco Trincao", <br />
+            favoriteGenre: "comedy" <br />
+            }
+          </td>
         </tr>
         <tr>
           <td>Allow users to update their registration information</td>
           <td>/users/:Username</td>
           <td>PUT</td>
           <td>JSON</td>
-          <td>ENTER EXAMPLE HERE</td>
+          <td>
+            { <br />
+            name: "Francisco Trincao", <br />
+            favoriteGenre: "western" <br />
+            }
+          </td>
           <td>JSON</td>
-          <td>ENTER EXAMPLE HERE</td>
+          <td>
+            { <br />
+            id: 5, <br />
+            name: "Francisco Trincao", <br />
+            favoriteGenre: "western" <br />
+            }
+          </td>
         </tr>
         <tr>
           <td>Allows users to add a movie to list of favorite movies</td>
@@ -104,17 +141,17 @@
           <td>POST</td>
           <td>None</td>
           <td>/users/carlosflores/Movies/1x1x1x1x1x1x</td>
-          <td>JSON</td>
-          <td>ENTER EXAMPLE HERE</td>
+          <td>Message</td>
+          <td>"Movie successfully added to your favourites"</td>
         </tr>
         <tr>
-          <td>Allow useres to remove a movie from their favourites list</td>
+          <td>Allow users to remove a movie from their favourites list</td>
           <td>/users/:Username/Movies/:MovieID</td>
           <td>DELETE</td>
           <td>None</td>
           <td>/users/carlosflores/Movies/2y2y2y2y2y2y</td>
-          <td>JSON</td>
-          <td>EXTER EXAMPLE HERE</td>
+          <td>Message</td>
+          <td>"Movie successfully removed from your favourites"</td>
         </tr>
         <tr>
           <td>Allow existing users to de-register</td>
