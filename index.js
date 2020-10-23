@@ -1,7 +1,7 @@
 const express = require("express");
 const morgan = require("morgan"); //locally importing Morgan
 const bodyParser = require("body-parser");
-const uuid = require("uuid");
+// const uuid = require("uuid");
 const app = express();
 
 let topMovies = [
@@ -33,12 +33,12 @@ let topMovies = [
   {
     title: "It",
     genre: "horror",
-    director: "Andy Muschietti" //6 movies for now
+    director: "Andy Muschietti"
   },
   {
     title: "Taxi Driver",
     genre: "drama",
-    director: "Martin Scorsese"
+    director: "Martin Scorsese" //7 movies for now
   }
 ];
 
@@ -50,11 +50,12 @@ app.get("/", (req, res) => {
   res.send("Welcome to my movie club");
 });
 
+//Get a list of all movies
 app.get("/movies", (req, res) => {
   res.json(topMovies);
 });
 
-//Gets data for a single student by film's tilte
+//Gets data for a single movie by film's tilte
 app.get("/movies/:title", (req, res) => {
   res.json(
     topMovies.find(movie => {
@@ -63,21 +64,43 @@ app.get("/movies/:title", (req, res) => {
   );
 });
 
+//Return data about a genre of a movie by its genre name (i.e. Horror)
+app.get("/movies/Genres/:Name", (req, res) => {
+  res.send("Successful GET request for returning data about a specific genre");
+});
+
+//Return data about a director by the director's name (i.e. Martin Scorsese)
+app.get("/movies/Directors/:Name", (req, res) => {
+  res.send("Successful GET request for returning data about a director");
+});
+
 //Allow new users to register
 app.post("/users", (req, res) => {
   res.send("Successful POST request for registering a new user");
 });
 
-//Allow an existing user to de-register
-app.delete("/users/:id", (req, res) => {
+//Allow users to update their registration information
+app.put("/users/:Username", (req, res) => {
+  res.send("Successful PUT request for updating a user's information");
+});
+
+//Allow users to add a movie to list of favourite movies
+app.post("/users/:Username/Movies/:MovieID", (req, res) => {
+  res.send("Successful POST request for adding a movie to list of favourites");
+});
+
+//Allow users to remove a movie from list of favourite Movies
+app.delete("/users/:Username/Movies/:MovieID", (req, res) => {
   res.send(
-    "Successful DELETE request for deleting an existing user from list of users"
+    "Successful DELETE request for removing a film from list of favourites"
   );
 });
 
-//Allow users to update their registration information
-app.put("/users/:id", (req, res) => {
-  res.send("Successful PUT request for updating a user's information");
+//Allow an existing user to de-register
+app.delete("/users/:Username", (req, res) => {
+  res.send(
+    "Successful DELETE request for deleting an existing user from list of users"
+  );
 });
 
 //using this piece of code instead of app.use(express.static('public')) due to technical difficulties
