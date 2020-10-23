@@ -35,6 +35,7 @@ app.get("/movies", (req, res) => {
   res.json(topMovies);
 });
 
+//using this piece of code instead of app.use(express.static('public')) due to technical difficulties
 app.get("documentation", (req, res) => {
   res.sendFile("public/documentation.html", { root: _dirname });
 });
