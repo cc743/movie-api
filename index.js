@@ -42,6 +42,17 @@ let topMovies = [
   }
 ];
 
+let users = [
+  {
+    name: "Carlos Flores",
+    favgenre: "comedy"
+  },
+  {
+    name: "Ann Jones",
+    favGenre: "drama"
+  }
+];
+
 app.use(morgan("common")); //invoking Morgan
 
 app.use(bodyParser.json());
@@ -76,7 +87,16 @@ app.get("/movies/Directors/:Name", (req, res) => {
 
 //Allow new users to register
 app.post("/users", (req, res) => {
-  res.send("Successful POST request for registering a new user");
+  let newUser = req.body;
+
+  if (!newUser.name) {
+    const message = "Missing name in request body";
+    res.status(400).send(message);
+  } else {
+    // newUser.id = uuid.v4();
+    users.push(newUser);
+    res.status(201).send(newUser);
+  }
 });
 
 //Allow users to update their registration information
