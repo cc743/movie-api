@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const express = require("express");
 const morgan = require("morgan"); //locally importing Morgan
 const bodyParser = require("body-parser");
@@ -8,12 +10,16 @@ const mongoose = require("mongoose");
 const Models = require("./model.js");
 
 const Movies = Models.Movie;
-const Users = Models.User;
+const Users = Models.User; //comment
 
-mongoose.connect("mongodb://localhost:27017/myFlixDB", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-});
+mongoose.connect(
+  `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.ingfg.mongodb.net/myFlixDB?retryWrites=true&w=majority`,
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    dbName: "myFlixDB"
+  }
+);
 
 app.use(morgan("common")); //invoking Morgan
 
