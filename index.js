@@ -127,8 +127,8 @@ app.put("/users/:Username", (req, res) => {
       $set: {
         Username: req.body.Username,
         Password: req.body.Password,
-        Email: req.body.Email,
-        Birthdate: req.body.Birthdate
+        Email: req.body.Email
+        // Birthdate: req.body.Birthdate
       }
     },
     { new: true },
