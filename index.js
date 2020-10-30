@@ -22,7 +22,7 @@ app.use(bodyParser.json());
 app.use(express.static("public"));
 
 app.get("/", (req, res) => {
-  res.send("Welcome to my movie club");
+  res.send("Welcome to my movie club!");
 });
 
 //Get a list of all movies to the user
@@ -37,7 +37,7 @@ app.get("/movies", (req, res) => {
     });
 });
 
-//Gets data for a single movie by film's tilte
+//Gets data for a single movie by film's title
 app.get("/movies/:Title", (req, res) => {
   Movies.findOne({ Title: req.params.Title })
     .then(movie => {
@@ -90,7 +90,7 @@ app.post("/users", (req, res) => {
   Users.findOne({ Username: req.body.Username })
     .then(user => {
       if (user) {
-        rerturn.res.status(400).send(req.body.Username + "already exists");
+        return res.status(400).send(req.body.Username + "already exists");
       } else {
         Users.create({
           Username: req.body.Username,
@@ -99,7 +99,7 @@ app.post("/users", (req, res) => {
           Birthdate: req.body.Birthdate
         })
           .then(user => {
-            res.json(user);
+            res.status(201).json(user);
           })
           .catch(err => {
             console.error(err);
