@@ -56,12 +56,16 @@
           <td>/movies/:Title</td>
           <td>GET</td>
           <td>None</td>
-          <td>/movies/Parasite</td>
+          <td>/movies/The%20Dark%20Knight</td>
           <td>JSON</td>
           <td>
-            { <br />title: "Parasite",<br />
-            genre: "thriller",<br />
-            director: "Bong Joon-Ho" <br />}
+            { <br />Title: "The Dark Knight",<br />
+            Description: "After a childhood tragedy, Bruce Wayne...",<br />
+            Genre: "Includes Name and Description", <br />
+            Director: "Includes Name, Bio, Birth, Death (i/a)", <br />
+            ImagePath: "theDarkKnight.png", <br />
+            Featured: false <br />
+            }
           </td>
         </tr>
         <tr>
@@ -71,13 +75,14 @@
           <td>/movies/Genres/:Name</td>
           <td>GET</td>
           <td>None</td>
-          <td>/movies/Genres/Horror</td>
+          <td>/movies/Genres/Superhero</td>
           <td>JSON</td>
           <td>
             { <br />
-            name: "horror", <br />
-            description: "Horror is a genre of film that seeks to elicit
-            fear."<br />}
+            Name: "Superhero", <br />
+            Description: "Superhero is a genre that focuses on heroes with
+            superhuman abilities"<br />
+            }
           </td>
         </tr>
         <tr>
@@ -86,12 +91,13 @@
           <!-- are the directors being found by list of directors or from the list of movies? -->
           <td>GET</td>
           <td>None</td>
-          <td>/movies/Directors/Martin%20Scorsese</td>
+          <td>/movies/Directors/Christopher%20Nolan</td>
           <td>JSON</td>
           <td>
             { <br />
-            name: "Martin Scorsese", <br />
-            careerSpan: "1967-present" <br />
+            name: "Christopher%20Nolan", <br />
+            Bio: "Christopher Nolan is a British filmmaker", <br />
+            Birth: "1970" <br />
             }
           </td>
         </tr>
@@ -102,16 +108,22 @@
           <td>JSON</td>
           <td>
             { <br />
-            name: "Francisco Trincao", <br />
-            favoriteGenre: "comedy" <br />
+            Username: "annjones", <br />
+            Password: "testpassword456", <br />
+            Email: "annjones@gmail.com", <br />
+            Birthdate: 1993-08-01, <br />
+            FavoriteMovie: objectID <br />
             }
           </td>
           <td>JSON</td>
           <td>
             { <br />
             id: 5, <br />
-            name: "Francisco Trincao", <br />
-            favoriteGenre: "comedy" <br />
+            Username: "annjones", <br />
+            Password: "testpassword456", <br />
+            Email: "annjones@gmail.com", <br />
+            Birthdate: 1993-08-01, <br />
+            FavoriteMovie: objectID <br />
             }
           </td>
         </tr>
@@ -122,16 +134,22 @@
           <td>JSON</td>
           <td>
             { <br />
-            name: "Francisco Trincao", <br />
-            favoriteGenre: "western" <br />
+            Username: "annjones", <br />
+            Password: "testpassword456", <br />
+            Email: "annjones56@gmail.com", <br />
+            Birthdate: 1993-08-01, <br />
+            FavoriteMovie: objectID <br />
             }
           </td>
           <td>JSON</td>
           <td>
             { <br />
             id: 5, <br />
-            name: "Francisco Trincao", <br />
-            favoriteGenre: "western" <br />
+            Username: "annjones", <br />
+            Password: "testpassword456", <br />
+            Email: "annjones56@gmail.com", <br />
+            Birthdate: 1993-08-01, <br />
+            FavoriteMovie: objectID <br />
             }
           </td>
         </tr>
