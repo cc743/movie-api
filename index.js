@@ -6,6 +6,9 @@ const bodyParser = require("body-parser");
 // const uuid = require("uuid");
 const app = express();
 
+const passport = require("passport"); //requiring the Passport module and importing the passport.js file
+require("./passport");
+
 const mongoose = require("mongoose");
 const Models = require("./model.js");
 
@@ -24,6 +27,8 @@ mongoose.connect(
 app.use(morgan("common")); //invoking Morgan
 
 app.use(bodyParser.json());
+
+let auth = require("./auth")(app); //making sure it is placed after bodyparser middleware function
 
 app.use(express.static("public"));
 
