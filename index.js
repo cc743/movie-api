@@ -129,8 +129,8 @@ app.post(
           Users.create({
             Username: req.body.Username,
             Password: req.body.Password,
-            Email: req.body.Email,
-            Birthdate: req.body.Birthdate
+            Email: req.body.Email
+            // Birthdate: req.body.Birthdate
           })
             .then(user => {
               res.status(201).json(user);
