@@ -24,6 +24,10 @@ mongoose.connect(
   }
 );
 
+const cors = require("cors");
+app.use(cors());
+/*rest of code goes here*/
+
 app.use(morgan("common")); //invoking Morgan
 
 app.use(bodyParser.json());
@@ -121,6 +125,7 @@ app.post(
   "/users",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
+    let hashedPassword = Users.hashPassword(req.body.Password);
     Users.findOne({ Username: req.body.Username })
       .then(user => {
         if (user) {
@@ -128,7 +133,7 @@ app.post(
         } else {
           Users.create({
             Username: req.body.Username,
-            Password: req.body.Password,
+            Password: hashedPassword,
             Email: req.body.Email
             // Birthdate: req.body.Birthdate
           })
