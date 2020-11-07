@@ -15,8 +15,8 @@ const Models = require("./model.js");
 const Movies = Models.Movie;
 const Users = Models.User;
 
-//mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.ingfg.mongodb.net/myFlixDB?retryWrites=true&w=majority
-mongoose.connect(`process.env.CONNECTION_URI`, {
+//'mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.ingfg.mongodb.net/myFlixDB?retryWrites=true&w=majority'
+mongoose.connect(process.env.CONNECTION_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   dbName: "myFlixDB"
