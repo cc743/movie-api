@@ -28,6 +28,8 @@ const cors = require("cors");
 app.use(cors());
 /*rest of code goes here*/
 
+const { check, validationResult } = require("express-validator");
+
 app.use(morgan("common")); //invoking Morgan
 
 app.use(bodyParser.json());
@@ -121,12 +123,31 @@ app.get(
 );
 
 //Allow new users to register
+//Question: do I keep the part that says 'passport.authenticate("jwt", {session: false})' or no? - this comes from observing the reading
 app.post(
   "/users",
   passport.authenticate("jwt", { session: false }),
+  [
+    check("username", "Username is required").isLength({ min: 5 }),
+    check(
+      "username",
+      "Username contains non-alphanumeric characters - not allowed"
+    ).isAlphanumeric(),
+    check("password", "Password is required")
+      .not()
+      .isEmpty(),
+    check("email", "Email does not appear to be valid").isEmail()
+  ],
   (req, res) => {
+    //check the validation object for errors
+    let errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return res.status(422).json({ errors: errors.array() });
+    }
+
     let hashedPassword = Users.hashPassword(req.body.password);
-    Users.findOne({ username: req.body.username })
+    Users.findOne({ username: req.body.username }) //search to see if a user with the requested username already exists
       .then(user => {
         if (user) {
           return res.status(400).send(req.body.username + " already exists");
