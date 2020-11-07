@@ -13,16 +13,14 @@ const mongoose = require("mongoose");
 const Models = require("./model.js");
 
 const Movies = Models.Movie;
-const Users = Models.User; //comment
+const Users = Models.User;
 
-mongoose.connect(
-  `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.ingfg.mongodb.net/myFlixDB?retryWrites=true&w=majority`,
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    dbName: "myFlixDB"
-  }
-);
+//mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.ingfg.mongodb.net/myFlixDB?retryWrites=true&w=majority
+mongoose.connect(`process.env.CONNECTION_URI`, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  dbName: "myFlixDB"
+});
 
 const cors = require("cors");
 app.use(cors());
