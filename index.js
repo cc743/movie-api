@@ -124,7 +124,6 @@ app.get(
 //Question: do I keep the part that says 'passport.authenticate("jwt", {session: false})' or no? - this comes from observing the reading
 app.post(
   "/users",
-  passport.authenticate("jwt", { session: false }),
   [
     check("username", "Username is required").isLength({ min: 5 }),
     check(
