@@ -217,7 +217,7 @@ app.put(
   }
 );
 
-//Allow users to add a movie to list of favourite movies
+//Allow users to add a movie to list of favourite movies (Note: a PUT request might be more appropriate)
 app.post(
   "/users/:username/movies/:movieID",
   passport.authenticate("jwt", { session: false }),
@@ -240,7 +240,7 @@ app.post(
   }
 );
 
-//Allow users to remove a movie from list of favourite Movies
+//Allow users to remove a movie from list of favourite Movies (Note: a PUT request might be more appropriate)
 app.delete(
   "/users/:username/movies/:movieID",
   passport.authenticate("jwt", { session: false }),
