@@ -43,7 +43,7 @@ app.get("/", (req, res) => {
 //Get a list of all movies to the user
 app.get(
   "/movies",
-  //  passport.authenticate("jwt", { session: false }),  //commenting this out to allow anonymous users to make requests on the movies endpoint
+  passport.authenticate("jwt", { session: false }),
   (req, res) => {
     Movies.find()
       .then(movies => {
