@@ -120,6 +120,22 @@ app.get(
   }
 );
 
+//get a user by username
+app.get(
+  "/users/:username",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Users.findOne({ username: req.params.username })
+      .then(user => {
+        res.status(201).json(user);
+      })
+      .catch(err => {
+        console.error(err);
+        res.status(500).send("Error: " + err);
+      });
+  }
+);
+
 //Allow new users to register
 //Question: do I keep the part that says 'passport.authenticate("jwt", {session: false})' or no? - this comes from observing the reading
 app.post(
