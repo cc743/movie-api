@@ -210,12 +210,13 @@ app.put(
       return res.status(422).json({ errors: errors.array() });
     }
 
+    let hashedPassword = Users.hashPassword(req.body.password);
     Users.findOneAndUpdate(
       { username: req.params.username },
       {
         $set: {
           username: req.body.username,
-          password: req.body.password, //do i need to hash password here?
+          password: hashedPassword, //do i need to hash password here?
           email: req.body.email
           // birthdate: req.body.birthdate
         }
