@@ -235,7 +235,7 @@ app.put(
 );
 
 //Allow users to add a movie to list of favourite movies (Note: a PUT request might be more appropriate)
-app.post(
+app.put(
   "/users/:username/movies/:movieID",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
