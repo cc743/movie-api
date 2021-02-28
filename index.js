@@ -15,16 +15,17 @@ const Models = require("./model.js");
 const Movies = Models.Movie;
 const Users = Models.User;
 
-//'mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.ingfg.mongodb.net/myFlixDB?retryWrites=true&w=majority'
-mongoose.connect(process.env.CONNECTION_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  dbName: "myFlixDB"
-});
+mongoose.connect(
+  `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.ingfg.mongodb.net/myFlixDB?retryWrites=true&w=majority`
+);
+// mongoose.connect(process.env.CONNECTION_URI, {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+//   dbName: "myFlixDB"
+// });
 
 const cors = require("cors");
 app.use(cors());
-/*rest of code goes here*/
 
 const { check, validationResult } = require("express-validator");
 
@@ -32,15 +33,23 @@ app.use(morgan("common")); //invoking Morgan
 
 app.use(bodyParser.json());
 
-let auth = require("./auth")(app); //making sure it is placed after bodyparser middleware function
+/**
+ * imports auth.js, which contains an api call to login endpoint and documentation
+ */
+let auth = require("./auth")(app);
 
 app.use(express.static("public"));
 
+/**
+ * api call to the homepage
+ */
 app.get("/", (req, res) => {
   res.send("Welcome to my movie club!");
 });
 
-//Get a list of all movies to the user
+/**
+ * api call to retrieve movie data for all movies
+ */
 app.get(
   "/movies",
   passport.authenticate("jwt", { session: false }),
@@ -56,7 +65,9 @@ app.get(
   }
 );
 
-//Gets data for a single movie by film's title
+/**
+ * api call to retrieve movie data for a single movie by a film's title
+ */
 app.get(
   "/movies/:Title",
   passport.authenticate("jwt", { session: false }),
@@ -72,7 +83,9 @@ app.get(
   }
 );
 
-//Return data about a genre by name (i.e. Western)
+/**
+ * api call to return data about a single genre by name (i.e. Western)
+ */
 app.get(
   "/movies/Genres/:Name",
   passport.authenticate("jwt", { session: false }),
@@ -88,7 +101,9 @@ app.get(
   }
 );
 
-//Return data about a director by name (i.e. Martin Scrosese)
+/**
+ * api call to return data about a single director by name (i.e. Martin Scrosese)
+ */
 app.get(
   "/movies/Directors/:Name",
   passport.authenticate("jwt", { session: false }),
@@ -104,7 +119,9 @@ app.get(
   }
 );
 
-//Get all users
+/**
+ * api call to get data for all users
+ */
 app.get(
   "/users",
   passport.authenticate("jwt", { session: false }),
@@ -120,7 +137,9 @@ app.get(
   }
 );
 
-//get a user by username
+/**
+ * api call to get data for a single user by username
+ */
 app.get(
   "/users/:username",
   passport.authenticate("jwt", { session: false }),
@@ -136,8 +155,9 @@ app.get(
   }
 );
 
-//Allow new users to register
-//Question: do I keep the part that says 'passport.authenticate("jwt", {session: false})' or no? - this comes from observing the reading
+/**
+ * api call to allow a new user to register
+ */
 app.post(
   "/users",
   [
@@ -187,7 +207,9 @@ app.post(
   }
 );
 
-//Allow users to update their registration information
+/**
+ * api call to allow a user to update their user information by username
+ */
 app.put(
   "/users/:username",
   passport.authenticate("jwt", { session: false }),
@@ -216,7 +238,7 @@ app.put(
       {
         $set: {
           username: req.body.username,
-          password: hashedPassword, //do i need to hash password here?
+          password: hashedPassword,
           email: req.body.email
           // birthdate: req.body.birthdate
         }
@@ -234,7 +256,9 @@ app.put(
   }
 );
 
-//Allow users to add a movie to list of favourite movies (Note: a PUT request might be more appropriate)
+/**
+ * api call to allow a user to put a new movie into the user's list of favorite movies
+ */
 app.put(
   "/users/:username/movies/:movieID",
   passport.authenticate("jwt", { session: false }),
@@ -257,7 +281,9 @@ app.put(
   }
 );
 
-//Allow users to remove a movie from list of favourite Movies (Note: a PUT request might be more appropriate)
+/**
+ * api call to allow a user to remove a film from the user's list of favorite movies
+ */
 app.delete(
   "/users/:username/movies/:movieID",
   passport.authenticate("jwt", { session: false }),
@@ -278,7 +304,9 @@ app.delete(
   }
 );
 
-//Allow an existing user to de-register
+/**
+ * api call to allow an existing user to de-register
+ */
 app.delete(
   "/users/:username",
   passport.authenticate("jwt", { session: false }),
@@ -298,19 +326,25 @@ app.delete(
   }
 );
 
-//using this piece of code instead of app.use(express.static('public')) due to technical difficulties
+/**
+ * api call to go to the api's documentation page
+ */
 app.get("documentation", (req, res) => {
   res.sendFile("public/documentation.html", { root: _dirname });
 });
 
-//error handling middleware function
+/**
+ * error handling middleware function
+ */
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send("Error! Error!");
 });
 
-//listen for requests
-//app.listen(8080, () => console.log("Your app is listening on port 8080."));
+/**
+ * listen for requests
+ * app.listen(8080, () => console.log("Your app is listening on port 8080."));
+ */
 const port = process.env.PORT || 8080;
 app.listen(port, "0.0.0.0", () => {
   console.log("Listening on Port " + port);
