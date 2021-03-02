@@ -3,7 +3,6 @@ require("dotenv").config();
 const express = require("express");
 const morgan = require("morgan"); //locally importing Morgan
 const bodyParser = require("body-parser");
-// const uuid = require("uuid");
 const app = express();
 
 const passport = require("passport"); //requiring the Passport module and importing the passport.js file
@@ -240,7 +239,6 @@ app.put(
           username: req.body.username,
           password: hashedPassword,
           email: req.body.email
-          // birthdate: req.body.birthdate
         }
       },
       { new: true },

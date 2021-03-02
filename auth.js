@@ -13,7 +13,7 @@ require("./passport");
 
 /**
  * function used to generate token, set expiration date, and algo used to
- * "sign", or encode, the values of the JWT strategy
+ * "sign", or encode, the values of the JWT strategy 
  * @param user
  */
 let generateJWTToken = user => {
@@ -47,4 +47,4 @@ module.exports = router => {
       });
     })(req, res);
   });
-};
+}; 

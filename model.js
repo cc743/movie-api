@@ -28,13 +28,13 @@ let userSchema = mongoose.Schema({
   username: { type: String, required: true },
   password: { type: String, required: true },
   email: { type: String, required: true },
-  birthdate: Date, //consider changing it to a string
+  //birthdate: Date, //consider changing it to a string
   favoriteMovie: [{ type: mongoose.Schema.Types.ObjectId, ref: "Movie" }]
 });
 
 /**
  * hashes user password to be stored in the database
- * @param passwordField
+ * @param password
  */
 userSchema.statics.hashPassword = password => {
   return bcrypt.hashSync(password, 10);
@@ -42,7 +42,7 @@ userSchema.statics.hashPassword = password => {
 
 /**
  * compares user's login password with the hashed stored password
- * @param passwordField
+ * @param password
  */
 userSchema.methods.validatePassword = function(password) {
   return bcrypt.compareSync(password, this.password);

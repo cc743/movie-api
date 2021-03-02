@@ -45,7 +45,7 @@ passport.use(
 /**
  * Passport strategy named JWTStrategy: authenticates users based on the JWT
  * submitted alongside the request. JWT Extracted from header of HTTP request,
- * secret key verifies signature of the JWT
+ * secret key verifies signature of the JWT 
  */
 passport.use(
   new JWTStrategy(
