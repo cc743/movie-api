@@ -11,7 +11,13 @@ require("./passport");
 const mongoose = require("mongoose");
 const Models = require("./model.js");
 
+/**
+ * Movies model imported from the model.js file
+ */
 const Movies = Models.Movie;
+/**
+ * Users model imported from the model.js file
+ */
 const Users = Models.User;
 
 mongoose.connect(
@@ -41,6 +47,7 @@ app.use(express.static("public"));
 
 /**
  * api call to the homepage
+ * 
  */
 app.get("/", (req, res) => {
   res.send("Welcome to my movie club!");
@@ -48,6 +55,7 @@ app.get("/", (req, res) => {
 
 /**
  * api call to retrieve movie data for all movies
+ * all movies
  */
 app.get(
   "/movies",
