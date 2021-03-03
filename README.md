@@ -3,7 +3,13 @@ This is the backend API for the myFlix application, a movie directory website.
 
 ## Getting Started with Postman
 In order to get started, one must make a POST request in order to add a new user to the database at the following endpoint: https://the-greatest.herokuapp.com/users
+- When registering, go to the "Body" tab and select the "raw" radio button. Select JSON from the dropdown menu. Enter a username, password, and email as shown below:
+![Register Snip](/public/Snip1_register.PNG)
+
 Next, one must log in using a POST request to the following endpoint: https://the-greatest.herokuapp.com/login 
+-When logging in, go to the "Body" tab and select "raw" and "JSON" as the options, and enter your username and password as shown below: 
+![Login Snip](/public/Snip2_login.PNG)
+
 Upon successful log in, copy the token created in the JSON response like shown below:
 
 `"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmYXZvcml0ZU1vdmllIjpbXSwiX2lkIjoiNjAzZWY0ZDczNjQ5MTMwMDE3M2YxNGQ4IiwidXNlcm5hbWUiOiJ0cmFjeW1jZ3JhZHkiLCJwYXNzd29yZCI6IiQyYiQxMCRFYnpwTlB2bW9GYTJxNkVmcTZxOGZPd2dnTWc3VEJ5aUlsc1Awc2xuTnIzN2dva1ZNTmQzYSIsImVtYWlsIjoidHJhY3ltY2dyYWR5QGdtYWlsLmNvbSIsIl9fdiI6MCwiaWF0IjoxNjE0NzM5MjYzLCJleHAiOjE2MTUzNDQwNjMsInN1YiI6InRyYWN5bWNncmFkeSJ9.vXw71Zp3bDw13SYU0ZgB51OVn_SSRPc3dBmGK5OVRI0" `
@@ -14,11 +20,11 @@ Now, go to the auth tab in postman.  Select the "Bearer Token" option under "typ
 
 Other api requests involving movies and users will require a bearer token. Make sure you have a token pasted into the above mentioned field. Otherwise, a 401 status error will prevent you from successfully making an api call.  A 401 status error signifies you are not authorized to access the endpoint.
 
-Available movies and endpoints:
+Available movies and endpoints (please note the use of "%20" to encode a space " " in the web address):
 
 - Movies (Examples)
   - GET Request: https://the-greatest.herokuapp.com/movies - Get all movies
-  - GET Request: https://the-greatest.herokuapp.com/movies/:Title - Get movie by title (i.e. The%20Waterboy)
+  - GET Request: https://the-greatest.herokuapp.com/movies/:Title - Get movie by title 
   (i.e. https://the-greatest.herokuapp.com/movies/The%20Waterboy)
   - GET Request: https://the-greatest.herokuapp.com/movies/Genres/:Name - Get movie genre by name (i.e. Western)
   - GET Request: https://the-greatest.herokuapp.com/movies/Directors/:Name - Get director by name 
